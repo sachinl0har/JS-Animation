@@ -9,13 +9,13 @@
         });
     };
     var Animation = function () {
-        var SEPARATION = 150,
-            AMOUNTX = 30,
-            AMOUNTY = 30;
+        var SEPARATION = 50,
+            AMOUNTX = 60,
+            AMOUNTY = 60;
         var camera, scene, renderer;
         var particles, particle, count = 0;
-        var windowHalfX = window.innerWidth / 2;
-        var windowHalfY = window.innerHeight / 2;
+        var windowHalfX = window.innerWidth / 4;
+        var windowHalfY = window.innerHeight / 4;
         var mouseX = -windowHalfX,
             mouseY = -windowHalfY;
 
@@ -28,7 +28,7 @@
             particles = new Array();
             var PI2 = Math.PI * 2;
             var material = new THREE.SpriteCanvasMaterial({
-                color: 0x00fff2,
+                color: 0xff0000,
                 program: function (context) {
                     context.beginPath();
                     context.arc(0, 0, 0.25, 0, PI2, true);
