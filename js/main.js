@@ -1,13 +1,23 @@
 (function ($) {
-    var Preloader = function () {
-        $("html").addClass('preload');
-        $(window).on('load', function () {
-            $("#loader").fadeOut("slow", function () {
-                $("#preloader").delay(300).fadeOut("slow");
-            });
-            $("html").removeClass('preload');
-        });
+    document.onkeydown = function (e) {
+        e = e || window.event;
+        if (e.ctrlKey) {
+            var c = e.which || e.keyCode;
+            switch (c) {
+                case 83:
+                case 85:
+                case 65:
+                case 73:
+                    e.preventDefault();
+                    e.stopPropagation();
+                    break;
+            }
+        }
     };
+
+    window.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    }, false);
     var Animation = function () {
         var SEPARATION = 50,
             AMOUNTX = 60,
@@ -65,7 +75,7 @@
         function render() {
             camera.position.x += (mouseX - camera.position.x) * .05;
             camera.position.y += (-mouseY - camera.position.y) * .03;
-            camera.position.z = 750;
+            camera.position.z = 250;
             camera.lookAt(scene.position);
 
             var i = 0;
@@ -94,17 +104,16 @@
     };
     var AOSStart = function () {
         AOS.init({
-            offset: 100,
+            offset: 10,
             duration: 500,
             easing: 'ease-in-sine',
-            delay: 250,
+            delay: 20,
             once: true,
             disable: 'mobile'
         });
     };
 
     (function () {
-        Preloader();
         Animation();
         SmoothScroll();
         AOSStart();
